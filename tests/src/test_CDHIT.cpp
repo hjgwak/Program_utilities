@@ -25,7 +25,7 @@ int main() {
 	map<string, string> options;
 	options["-i"] = "../test_data/test.fasta";
 	options["-o"] = "../test_output/test_CDHIT.cdhit";
-	options["-v"] = "0.94";
+	options["-c"] = "0.94";
 	options["-M"] = "0";
 	options["-n"] = "8";
 	options["-d"] = "100";
