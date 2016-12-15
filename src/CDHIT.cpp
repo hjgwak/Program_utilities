@@ -9,13 +9,13 @@ CDHIT::CDHIT() {
 	this->required.clear();
 }
 
-CDHIT::CDHIT(cdhitMode mode) {
+CDHIT::CDHIT(const cdhitMode mode) {
 	this->mode = mode;
 	this->setRequired();
 }
 
 //setters
-void CDHIT::setMode(cdhitMode mode) {
+void CDHIT::setMode(const cdhitMode mode) {
 	this->mode = mode;
 	this->setRequired();
 }
@@ -27,7 +27,7 @@ pair<string, int> CDHIT::run() {
 	}
 
 	string cmd = this->getPath() + 
-				((this->mode == cdhitMode::cd_hit) ? "cd-hit" :
+				((this->mode == cdhitMode::cd_hit)     ? "cd-hit" :
 				 (this->mode == cdhitMode::cd_hit_454) ? "cd-hit-454" :
 				 (this->mode == cdhitMode::cd_hit_est) ? "cd-hit-est" : "error");
 

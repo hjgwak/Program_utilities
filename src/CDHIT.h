@@ -10,10 +10,10 @@ class CDHIT : public Program {
 public :
 	//constructors
 	CDHIT();
-	CDHIT(cdhitMode mode);
+	CDHIT(const cdhitMode mode);
 
 	//setters
-	void setMode(cdhitMode mode);
+	void setMode(const cdhitMode mode);
 
 	//actions
 	std::pair<std::string, int> run();

@@ -10,15 +10,15 @@ class Program {
 public :
 	//constructors
 	Program();
-	Program(const std::string name, const std::string path);
+	Program(const std::string& name, const std::string& path);
 
 	//setters
-	void addOption(const std::string key, const std::string value);
+	void addOption(const std::string& key, const std::string& value);
 
 	//getters
 	std::string getPath() const;
 	std::string getName() const;
-	std::string getOption(const std::string key) const;
+	std::string getOption(const std::string& key) const;
 	std::vector<std::string> getOptionKeys() const;
 
 	//actions

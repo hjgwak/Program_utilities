@@ -9,14 +9,14 @@ Program::Program() {
 	this->options.clear();
 }
 
-Program::Program(const string name, const string path) {
+Program::Program(const string& name, const string& path) {
 	this->name = name;
 	this->path = path;
 	this->options.clear();
 }
 
 //setters
-void Program::addOption(const string key, const string value) {
+void Program::addOption(const string& key, const string& value) {
 	this->options[key] = value;
 }
 
@@ -29,7 +29,7 @@ string Program::getName() const {
 	return this->name;
 }
 
-string Program::getOption(const string key) const {
+string Program::getOption(const string& key) const {
 	map<string, string>::const_iterator m_it = this->options.find(key);
 	if (m_it != this->options.end()) {
 		return m_it->second;
