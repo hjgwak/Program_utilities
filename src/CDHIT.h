@@ -10,6 +10,7 @@ class CDHIT : public Program {
 public :
 	//constructors
 	CDHIT();
+	CDHIT(const std::string name, const std::string path, const cdhitMode mode);
 	CDHIT(const cdhitMode mode);
 
 	//setters

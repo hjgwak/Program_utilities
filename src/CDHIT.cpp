@@ -9,6 +9,12 @@ CDHIT::CDHIT() {
 	this->required.clear();
 }
 
+CDHIT::CDHIT(const string name, const string path, const cdhitMode mode) 
+: Program(name, path){
+	this->mode = mode;
+	this->setRequired();
+}
+
 CDHIT::CDHIT(const cdhitMode mode) {
 	this->mode = mode;
 	this->setRequired();

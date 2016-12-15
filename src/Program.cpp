@@ -20,6 +20,17 @@ void Program::addOption(const string& key, const string& value) {
 	this->options[key] = value;
 }
 
+void Program::setName(const string name) {
+	this->name = name;
+}
+
+void Program::setPath(const string path) {
+	this->path = path;
+	if (this->path[this->path.size() - 1] != '/') {
+		this->path += "/";
+	}
+}
+
 //getters
 string Program::getPath() const {
 	return this->path;

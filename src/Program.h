@@ -14,6 +14,8 @@ public :
 
 	//setters
 	void addOption(const std::string& key, const std::string& value);
+	void setName(const std::string name);
+	void setPath(const std::string path);
 
 	//getters
 	std::string getPath() const;
