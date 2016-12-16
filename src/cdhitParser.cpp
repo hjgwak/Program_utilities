@@ -117,7 +117,7 @@ bool cdhitParser::parse() {
 				string seq_name = tokens[1].substr(0, tokens[1].size() - 3);
 				
 				cluster.push_back(seq_name);
-				if (tokens[2] == "*") {
+				if (tokens[3] == "*") {
 					representative = seq_name;
 				}
 			}
