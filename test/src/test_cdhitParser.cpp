@@ -139,6 +139,8 @@ int main(int argc, char* argv[]) {
 		string rep = parser.getRep(m_it->first);
 		if (rep != m_it->second) {
 			cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getRep()" << endl;
+			cerr << "        parser.getRep(" << m_it->first << ") : " << rep << endl;
+			cerr << "        rep_answer[" << m_it->first << "] : " << m_it->second << endl;
 			ret -= 1;
 			break;
 		}
