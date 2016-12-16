@@ -21,8 +21,13 @@ bool vectorComp(vector<string> v1, vector<string> v2) {
 	return true;
 }
 
-int main() {
+int main(int argc, char* argv[]) {
 	int ret = 0;
+
+	if (argc != 2) {
+		return -1;
+	}
+	string path = argv[1];
 
 	cdhitParser test_parser;
 	if (test_parser.is_open()) {
@@ -30,7 +35,7 @@ int main() {
 		return -1;
 	}
 
-	test_parser.open("../test_data/test.cdhit.clstr");
+	test_parser.open(path + "/test_data/test.cdhit.clstr");
 	if (!test_parser.is_open()) {
 		cerr << "[ERROR] Parser::open(file_name)" << endl;
 		return -1;
@@ -42,7 +47,7 @@ int main() {
 		return -1;
 	}
 
-	cdhitParser parser("../test_data/test.cdhit.clstr");
+	cdhitParser parser(path + "/test_data/test.cdhit.clstr");
 
 	if (!parser.is_open()) {
 		cerr << "[ERROR] cdhitParser::constructor(file_name)" << endl;

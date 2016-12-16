@@ -5,8 +5,14 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
 	int ret = 0;
+
+	if (argc != 2) {
+		return -1;
+	}
+	string path = argv[1];
+
 	CDHIT cdhit(cdhitMode::cd_hit);
 	
 	cdhit.setMode(cdhitMode::cd_hit_est);
@@ -24,8 +30,8 @@ int main() {
 	}
 
 	map<string, string> options;
-	options["-i"] = "../test_data/test.fasta";
-	options["-o"] = "../test_output/test_CDHIT.cdhit";
+	options["-i"] = path + "/test_data/test.fasta";
+	options["-o"] = path + "/test_output/test_CDHIT.cdhit";
 	options["-c"] = "0.94";
 	options["-M"] = "0";
 	options["-n"] = "8";
@@ -71,8 +77,8 @@ int main() {
 	}
 
 	ifstream result, answer;
-	result.open("../test_output/test_CDHIT.cdhit.clstr");
-	answer.open("../test_answer/answer_CDHIT.cdhit.clstr");
+	result.open(path + "/test_output/test_CDHIT.cdhit.clstr");
+	answer.open(path + "/test_answer/answer_CDHIT.cdhit.clstr");
 
 	string result_line, answer_line;
 	while (getline(result, result_line) && getline(answer, answer_line)) {
