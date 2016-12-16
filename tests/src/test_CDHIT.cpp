@@ -1,6 +1,7 @@
 #include "CDHIT.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -43,7 +44,7 @@ int main() {
 	}
 	else {
 		vector<string>::iterator v_it = answer_keys.begin();
-		for (; v_it != keys.end(); ++v_it) {
+		for (; v_it != answer_keys.end(); ++v_it) {
 			vector<string>::iterator has = find(keys.begin(), keys.end(), *v_it);
 			if (has == keys.end()) {
 				cerr << "[ERROR] Program.getOptionKeys()" << endl;
