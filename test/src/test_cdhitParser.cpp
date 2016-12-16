@@ -59,7 +59,7 @@ string printMap(const map<unsigned int, string> m) {
 		if (!first) {
 			line += ", ";
 		}
-		line += m_it->first;
+		line += to_string(m_it->first);
 		line += ": ";
 		line += m_it->second;
 		first = false;
@@ -78,7 +78,7 @@ string printMap2(const map<unsigned int, vector<string> > m) {
 		if (!first) {
 			line += ",\n";
 		}
-		line += m_it->first;
+		line += to_string(m_it->first);
 		line += ": ";
 		line += printVector(m_it->second);
 		first = false;
@@ -213,6 +213,7 @@ int main(int argc, char* argv[]) {
 			break;
 		}
 	}
+	cerr << "[SUCCESS] cdhitParser::getRep()" << endl;
 
 	map<unsigned int, vector<string> >::iterator m_it2 = cluster_answer.begin();
 	for (; m_it2 != cluster_answer.end(); ++m_it2) {
@@ -225,6 +226,8 @@ int main(int argc, char* argv[]) {
 			break;
 		}
 	}
+	cerr << "[SUCCESS] cdhitParser::getCluster()" << endl;
+	cerr << "[SUCCESS] cdhitParser::parse()" << endl;
 
 	return ret;
 }
