@@ -1,2 +1,2 @@
-ADD_LIBRARY(CDHIT CDHIT.cpp)
-ADD_LIBRARY(cdhitParser cdhitParser.cpp)
+ADD_LIBRARY(CDHIT CDHIT.cpp Program.cpp)
+ADD_LIBRARY(cdhitParser cdhitParser.cpp Parser.cpp)
