@@ -42,7 +42,7 @@ pair<string, int> CDHIT::run() {
 		cmd += " " + m_it->first + " " + m_it->second;
 	}
 
-	int ret = system(cmd.c_str);
+	int ret = system(cmd.c_str());
 
 	return make_pair(cmd, ret);
 }
