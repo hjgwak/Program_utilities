@@ -38,36 +38,26 @@ map<unsigned int, string> cdhitParser::getWholeReps() const {
 }
 
 vector<string> cdhitParser::getCluster(const unsigned int num) const {
-	vector<string> ret;
+	vector<string> ret = {"OUT OF RANGE"};
 	if (num > this->clusters.size()) {
 		return ret;
 	}
+	ret.pop_back();
+	ret.push_back("NOT FOUND");
 
-	map<unsigned int, vector<string> >::const_iterator m_it = this->clusters.begin();
+	map<unsigned int, vector<string> >::const_iterator m_it = this->clusters.find(num);
 
-	for (; m_it != this->clusters.end(); ++m_it) {
-		if (m_it->first == num) {
-			ret = m_it->second;
-			break;
-		}
-	}
-
-	return ret;
+	return (m_it != this->clusters.end()) ? m_it->second : ret;
 }
 
 string cdhitParser::getRep(const unsigned int num) const {
 	if (num > this->representatives.size()) {
-		return "";
+		return "OUT OF RANGE";
 	}
 
-	map<unsigned int, string>::const_iterator m_it = this->representatives.begin();
-	for (; m_it != this->representatives.end(); ++m_it) {
-		if (m_it->first == num) {
-			return m_it->second;
-		}
-	}
+	map<unsigned int, string>::const_iterator m_it = this->representatives.find(num);
 
-	return "";
+	return (m_it != this->representatives.end()) ? m_it->second : "NOT FOUND";
 }
 
 size_t cdhitParser::getClusterSize(const unsigned int num) const {

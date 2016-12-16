@@ -4,12 +4,12 @@
 
 using namespace std;
 
-bool vectorComp(vector<string> v1, vector<string> v2) {
+bool vectorComp(const vector<string>& v1, const vector<string>& v2) {
 	if (v1.size() != v2.size()) {
 		return false;
 	}
 	else {
-		vector<string>::iterator v_it = v1.begin(), v_it2;
+		vector<string>::const_iterator v_it = v1.begin(), v_it2;
 		for (; v_it != v1.end(); ++v_it) {
 			v_it2 = find(v2.begin(), v2.end(), *v_it);
 			if (v_it2 == v2.end()) {
@@ -21,6 +21,35 @@ bool vectorComp(vector<string> v1, vector<string> v2) {
 	return true;
 }
 
+bool PassOrFail(const bool condition, const string& msg, int* ret) {
+	if (condition) {
+		cerr << "[ERROR] " << msg << endl;
+		*ret -= 1;
+	}
+	else {
+		cerr << "[SUCCESS] " << msg << endl;
+	}
+
+	return condition;
+}
+
+string printVector(const vector<string>& v) {
+	string line = "{";
+	bool first = true;
+
+	vector<string>::const_iterator v_it = v.begin();
+	for (; v_it != v.end(); ++v_it) {
+		if (!first) {
+			line += ", ";
+		}
+		line += *v_it;
+		first = false;
+	}
+	line += "}";
+
+	return line;
+}
+
 int main(int argc, char* argv[]) {
 	int ret = 0;
 
@@ -30,36 +59,21 @@ int main(int argc, char* argv[]) {
 	string path = argv[1];
 
 	cdhitParser test_parser;
-	if (test_parser.is_open()) {
-		cerr << "[ERROR] Parser::constructor" << endl;
-		return -1;
-	}
+	PassOrFail(test_parser.is_open(), "Parser::constructor()", &ret);
 
 	test_parser.open(path + "/test_data/test.cdhit.clstr");
-	if (!test_parser.is_open()) {
-		cerr << "[ERROR] Parser::open(file_name)" << endl;
-		return -1;
-	}
+	PassOrFail(!test_parser.is_open(), "Parser::constructor(file_name)", &ret);
 
 	test_parser.close();
-	if (test_parser.is_open()) {
-		cerr << "[ERROR] Parser::close()" << endl;
-		return -1;
-	}
+	PassOrFail(test_parser.is_open(), "Parser::close()", &ret);
 
 	cdhitParser parser(path + "/test_data/test.cdhit.clstr");
 
-	if (!parser.is_open()) {
-		cerr << "[ERROR] cdhitParser::constructor(file_name)" << endl;
-		ret -= 1;
-	}
+	PassOrFail(!parser.is_open(), "cdhitParser::constructor(file_name)", &ret);
 
 	parser.parse();
 
-	if (parser.getClusterNum() != 5) {
-		cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getClusterNum()" << endl;
-		ret -= 1;
-	}
+	PassOrFail(parser.getClusterNum() != 5, "cdhitParser::parse() or cdhitParser::getClusterNum()", &ret);
 
 	map<unsigned int, size_t> cluster_size_answer;
 	cluster_size_answer[0] = 6;
@@ -70,9 +84,9 @@ int main(int argc, char* argv[]) {
 
 	for (unsigned int i = 0; i < 5; ++i) {
 		size_t size = parser.getClusterSize(i);
-		if (cluster_size_answer[i] != size) {
-			cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getClusterSize()" << endl;
-			ret -= 1;
+
+		if (PassOrFail(cluster_size_answer[i] != size, 
+			"cdhitParser::parse() or cdhitParser::getClusterSize()", &ret)) {
 			break;
 		}
 	}
@@ -111,7 +125,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	if (cluster_answer.size() != whole_cluster.size()) {
-		cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getWhileClusters()" << endl;
+		cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getWholeClusters()" << endl;
 		ret -= 1;
 	}
 	else {
@@ -151,6 +165,8 @@ int main(int argc, char* argv[]) {
 		vector<string> cluster = parser.getCluster(m_it2->first);
 		if (!vectorComp(cluster, m_it2->second)) {
 			cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getCluster()" << endl;
+			cerr << "        parser.getCluster(" << m_it2->first << ") : " << printVector(cluster) << endl;
+			cerr << "        cluster_answer[" << m_it2->first << "] : " << printVector(m_it2->second) << endl;
 			ret -= 1;
 			break;
 		}
