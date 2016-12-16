@@ -50,6 +50,44 @@ string printVector(const vector<string>& v) {
 	return line;
 }
 
+string printMap(const map<unsigned int, string> m) {
+	string line = "{";
+	bool first = true;
+
+	map<unsigned int, string>::const_iterator m_it = m.begin();
+	for (; m_it != m.end(); ++m_it) {
+		if (!first) {
+			line += ", ";
+		}
+		line += m_it->first;
+		line += ": ";
+		line += m_it->second;
+		first = false;
+	}
+	line += "}";
+
+	return line;
+}
+
+string printMap2(const map<unsigned int, vector<string> > m) {
+	string line = "{";
+	bool first = true;
+
+	map<unsigned int, vector<string> >::const_iterator m_it = m.begin();
+	for (; m_it != m.end(); ++m_it) {
+		if (!first) {
+			line += ",\n";
+		}
+		line += m_it->first;
+		line += ": ";
+		line += printVector(m_it->second);
+		first = false;
+	}
+	line += "}";
+
+	return line;
+}
+
 int main(int argc, char* argv[]) {
 	int ret = 0;
 
@@ -111,6 +149,7 @@ int main(int argc, char* argv[]) {
 
 	if (rep_answer.size() != whole_rep.size()) {
 		cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getWholeReps()" << endl;
+		cerr << "        size not equal" << endl;
 		ret -= 1;
 	}
 	else {
@@ -119,13 +158,23 @@ int main(int argc, char* argv[]) {
 			m_it2 = whole_rep.find(m_it->first);
 			if (m_it2 == whole_rep.end()) {
 				cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getWholeReps()" << endl;
+				cerr << "        parser.getWholeReps() : " << printMap(whole_rep) << endl;
+				cerr << "        rep_answer : " << printMap(rep_answer) << endl;
+				ret -= 1;
+			}
+			else if (m_it2->second != m_it->second) {
+				cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getWholeReps()" << endl;
+				cerr << "        parser.getWhileReps() : " << printMap(whole_rep) << endl;
+				cerr << "        rep_answer : " << printMap(rep_answer) << endl;
 				ret -= 1;
 			}
 		}
 	}
+	cerr << "[SUCCESS] cdhitParser::getWholeReps()" << endl;
 
 	if (cluster_answer.size() != whole_cluster.size()) {
 		cerr << "[ERROR] cdhitParser::parse() or cdhitParser::getWholeClusters()" << endl;
+		cerr << "        size not equal" << endl;
 		ret -= 1;
 	}
 	else {
@@ -142,11 +191,16 @@ int main(int argc, char* argv[]) {
 
 			if (!same) {
 				cerr << "[ERROR] cdhitParser::parse() or cditParser::getWholeClusters()" << endl;
+				cerr << "        parser.getWholeClusters() : " << endl;
+				cerr << printMap2(whole_cluster) << endl;
+				cerr << "        cluster_answer : " << endl;
+				cerr << printMap2(cluster_answer) << endl;
 				ret -= 1;
 				break;
 			}
 		}
 	}
+	cerr << "[SUCCESS] cdhitParser::getWholeClusters()" << endl;
 
 	map<unsigned int, string>::iterator m_it = rep_answer.begin();
 	for (; m_it != rep_answer.end(); ++m_it) {
