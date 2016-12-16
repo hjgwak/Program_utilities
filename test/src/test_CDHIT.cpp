@@ -65,10 +65,14 @@ int main() {
 	}
 
 	pair<string, int> res = cdhit.run();
+	if (res.second != 0) {
+		cerr << "[ERROR] cd-hit did not execute collectly" << endl;
+		ret -= 1;
+	}
 
 	ifstream result, answer;
 	result.open("../test_output/test_CDHIT.cdhit.clstr");
-	answer.open("../test_output/answer_CDHIT.cdhit.clstr");
+	answer.open("../test_answer/answer_CDHIT.cdhit.clstr");
 
 	string result_line, answer_line;
 	while (getline(result, result_line) && getline(answer, answer_line)) {

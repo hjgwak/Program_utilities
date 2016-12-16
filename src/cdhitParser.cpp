@@ -7,18 +7,21 @@ using namespace std;
 cdhitParser::cdhitParser() : Parser() {
 	this->clusters.clear();
 	this->representatives.clear();
+	this->parsed = false;
 }
 
 cdhitParser::cdhitParser(const char* file_name) {
 	this->clusters.clear();
 	this->representatives.clear();
 	this->open(file_name);
+	this->parsed = false;
 }
 
 cdhitParser::cdhitParser(const string& file_name) {
 	this->clusters.clear();
 	this->representatives.clear();
 	this->open(file_name);
+	this->parsed = false;
 }
 
 cdhitParser::~cdhitParser() {
@@ -65,6 +68,23 @@ string cdhitParser::getRep(const unsigned int num) const {
 	}
 
 	return "";
+}
+
+size_t cdhitParser::getClusterSize(const unsigned int num) const {
+	if (num > this->clusters.size()) {
+		return 0;
+	}
+
+	map<unsigned int, vector<string> >::const_iterator m_it = this->clusters.begin();
+	for (; m_it != this->clusters.end(); ++m_it) {
+		if (m_it->first == num) {
+			return m_it->second.size();
+		}
+	}
+}
+
+size_t cdhitParser::getClusterNum() const {
+	return this->clusters.size();
 }
 
 
@@ -114,6 +134,8 @@ bool cdhitParser::parse() {
 		}
 		this->clusters[clstr_num] = cluster;
 		this->representatives[clstr_num] = representative;
+
+		this->parsed = true;
 
 		return true;
 	}

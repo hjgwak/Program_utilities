@@ -18,12 +18,15 @@ public :
 	std::map<unsigned int, std::string> getWholeReps() const;
 	std::vector<std::string> getCluster(const unsigned int num) const;
 	std::string getRep(const unsigned int num) const;
+	size_t getClusterSize(const unsigned int num) const;
+	size_t getClusterNum() const;
 
 	//actions
 	bool parse();
 private :
 	std::map<unsigned int, std::vector<std::string> > clusters;
 	std::map<unsigned, std::string> representatives;
+	bool parsed;
 };
 
 #endif // ! __CDHITPARSER_H__
