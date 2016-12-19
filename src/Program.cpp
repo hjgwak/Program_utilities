@@ -16,19 +16,25 @@ Program::Program(const string& name, const string& path) {
 }
 
 //setters
-void Program::addOption(const string& key, const string& value) {
+Program& Program::addOption(const string& key, const string& value) {
 	this->options[key] = value;
+
+	return *this;
 }
 
-void Program::setName(const string name) {
+Program& Program::setName(const string name) {
 	this->name = name;
+
+	return *this;
 }
 
-void Program::setPath(const string path) {
+Program& Program::setPath(const string path) {
 	this->path = path;
 	if (this->path[this->path.size() - 1] != '/') {
 		this->path += "/";
 	}
+
+	return *this;
 }
 
 //getters

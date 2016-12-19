@@ -13,9 +13,9 @@ public :
 	Program(const std::string& name, const std::string& path);
 
 	//setters
-	void addOption(const std::string& key, const std::string& value);
-	void setName(const std::string name);
-	void setPath(const std::string path);
+	Program& addOption(const std::string& key, const std::string& value);
+	Program& setName(const std::string name);
+	Program& setPath(const std::string path);
 
 	//getters
 	std::string getPath() const;

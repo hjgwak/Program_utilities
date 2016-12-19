@@ -34,13 +34,16 @@ int main(int argc, char* argv[]) {
 	options["-o"] = path + "/test_output/test_CDHIT.cdhit";
 	options["-c"] = "0.94";
 	options["-M"] = "0";
-	options["-n"] = "8";
-	options["-d"] = "100";
 
 	map<string, string>::iterator m_it = options.begin();
 	for (; m_it != options.end(); ++m_it) {
 		cdhit.addOption(m_it->first, m_it->second);
 	}
+
+	options["-n"] = "8";
+	options["-d"] = "100";
+
+	cdhit.addOption("-n", "8").addOption("-d", "100");
 	
 	vector<string> keys = cdhit.getOptionKeys();
 	vector<string> answer_keys = { "-i", "-o", "-c", "-M", "-n", "-d" };
