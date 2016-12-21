@@ -2,19 +2,19 @@
 0	100nt, >test1... at +/100.00%
 1	100nt, >test2... at +/97.60%
 2	100nt, >test3... at +/99.93%
-3	100nt, >rep1... at *
+3	100nt, >rep1... *
 4	100nt, >test4... at +/100.00%
 5	100nt, >test5... at +/95.34%
 >Cluster 1
 0	104nt, >test6... at +/97.34%
 1	103nt, >test7... at +/99.00%
-2	104nt, >rep2... at *
+2	104nt, >rep2... *
 3	104nt, >test8... at +/100.00%
 >Cluster 2
-0	108nt, >rep3... at *
+0	108nt, >rep3... *
 >Cluster 3
-0	107nt, >rep4... at *
+0	107nt, >rep4... *
 >Cluster 4
 0	99nt, >test9... at +/100.00%
-1	99nt, >rep5... at *
+1	99nt, >rep5... *
 2	97nt, >test10... at +/97.34%
