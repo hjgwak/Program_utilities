@@ -79,10 +79,11 @@ size_t cdhitParser::getClusterNum() const {
 
 
 //actions
-static vector<string> tokenize(string& str, char delim = ' ') {
+static vector<string> tokenize(const string& str, const char delim = ' ') {
 	vector<string> ret;
+	string temp = str;
 
-	istringstream stm(str);
+	istringstream stm(temp);
 	string token;
 	while (getline(stm, token, delim))
 		ret.push_back(token);
