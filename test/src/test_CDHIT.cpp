@@ -5,27 +5,31 @@
 
 using namespace std;
 
+string makeDirForm(string path) {
+	return (path[path.length() - 1] != '/') ? path + "/" : path;
+}
+
 int main(int argc, char* argv[]) {
 	int ret = 0;
 
-	if (argc != 2) {
+	if (argc != 3) {
 		return -1;
 	}
-	string path = argv[1];
-	if (path[path.length() - 1] != '/') path += '/';
+	string path = makeDirForm(argv[1]);
+	string cdhit_path = makeDirForm(argv[2]);
 
 	CDHIT cdhit(cdhitMode::cd_hit);
 	
 	cdhit.setMode(cdhitMode::cd_hit_est);
 	cdhit.setName("cd-hit-est");
-	cdhit.setPath("/home/hjgwak/program/cdhit-master/");
+	cdhit.setPath(cdhit_path);
 
 	if (cdhit.getName() != "cd-hit-est") {
 		cerr << "[ERROR] Program.getName()" << endl;
 		ret -= 1;
 	}
 
-	if (cdhit.getPath() != "/home/hjgwak/program/cdhit-master/") {
+	if (cdhit.getPath() != cdhit_path) {
 		cerr << "[ERROR] Program.getPath()" << endl;
 		ret -= 1;
 	}

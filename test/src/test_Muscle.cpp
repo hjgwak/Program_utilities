@@ -4,14 +4,18 @@
 
 using namespace std;
 
+string makeDirForm(string path) {
+	return (path[path.length() - 1] != '/') ? path + "/" : path;
+}
+
 int main(int argc, char* argv[]) {
 	int ret = 0;
 
-	if (argc != 2) {
+	if (argc != 3) {
 		return -1;
 	}
-	string path = argv[1];
-	if (path[path.length() - 1] != '/') path += '/';
+	string path = makeDirForm(argv[1]);
+	string muscle_path = makeDirForm(argv[2]);
 
 	Muscle muscle;
 	pair<string, int> res;
@@ -24,7 +28,7 @@ int main(int argc, char* argv[]) {
 		ret -= 1;
 	}
 
-	Muscle muscle2("muscle", "/program/");
+	Muscle muscle2("muscle", muscle_path);
 
 	res = muscle.run();
 	if (res.first != "error" || res.second != -1) {
