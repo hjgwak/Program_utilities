@@ -37,9 +37,10 @@ int main(int argc, char* argv[]) {
 	muscle2.addOption("-in", path + "test_data/test_muscle.fasta");
 	muscle2.addOption("-out", path + "test_output/test_muscle.fasta");
 
-	res = muscle.run();
+	res = muscle2.run();
 	if (res.second != 0) {
 		cerr << "[ERROR] muscle did not execute collectly" << endl;
+		cerr << "        cmd: " + res.first << endl;
 		ret -= 1;
 	}
 
