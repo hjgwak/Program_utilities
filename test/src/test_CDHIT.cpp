@@ -12,6 +12,7 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 	string path = argv[1];
+	if (path[path.length() - 1] != '/') path += '/';
 
 	CDHIT cdhit(cdhitMode::cd_hit);
 	
@@ -30,8 +31,8 @@ int main(int argc, char* argv[]) {
 	}
 
 	map<string, string> options;
-	options["-i"] = path + "/test_data/test.fasta";
-	options["-o"] = path + "/test_output/test_CDHIT.cdhit";
+	options["-i"] = path + "test_data/test.fasta";
+	options["-o"] = path + "test_output/test_CDHIT.cdhit";
 	options["-c"] = "0.94";
 	options["-M"] = "0";
 
@@ -80,8 +81,8 @@ int main(int argc, char* argv[]) {
 	}
 
 	ifstream result, answer;
-	result.open(path + "/test_output/test_CDHIT.cdhit.clstr");
-	answer.open(path + "/test_answer/answer_CDHIT.cdhit.clstr");
+	result.open(path + "test_output/test_CDHIT.cdhit.clstr");
+	answer.open(path + "test_answer/answer_CDHIT.cdhit.clstr");
 
 	string result_line, answer_line;
 	while (getline(result, result_line) && getline(answer, answer_line)) {

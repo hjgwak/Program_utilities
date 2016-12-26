@@ -4,7 +4,7 @@
 #include "Program.h"
 #include <vector>
 
-enum cdhitMode {cd_hit, cd_hit_est, cd_hit_454, none};
+enum class cdhitMode {cd_hit, cd_hit_est, cd_hit_454, none};
 
 class CDHIT : public Program {
 public :
