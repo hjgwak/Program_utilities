@@ -17,7 +17,7 @@ FUNCTION(GET_PATH regexp prefix dest lists)
 		IF (NOT "${TEMP}" STREQUAL "")
 			STRING(REPLACE ${prefix} "" TEMP ${TEMP})
 			SET(${dest} ${TEMP} PARENT_SCOPE)
-		ENDIF(NOE "${TEMP}" STREQUAL "")
+		ENDIF(NOT "${TEMP}" STREQUAL "")
 	ENDFOREACH()
 ENDFUNCTION(GET_PATH)
 
