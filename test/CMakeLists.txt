@@ -13,9 +13,12 @@ SET(TEST_SOURCE_DIR ${TEST_DIR}/src)
 
 ADD_EXECUTABLE(test_CDHIT ${TEST_SOURCE_DIR}/test_CDHIT.cpp)
 ADD_EXECUTABLE(test_cdhitParser ${TEST_SOURCE_DIR}/test_cdhitParser.cpp)
+ADD_EXECUTABLE(test_Muscle ${TEST_SOURCE_DIR}/test_Muscle.cpp)
 
 TARGET_LINK_LIBRARIES(test_CDHIT CDHIT)
 TARGET_LINK_LIBRARIES(test_cdhitParser cdhitParser)
+TARGET_LINK_LIBRARIES(test_Muscle Muscle)
 
 ADD_TEST(test_CDHIT ${EXECUTABLE_OUTPUT_PATH}/test_CDHIT ${TEST_DIR})
 ADD_TEST(test_cdhitParser ${EXECUTABLE_OUTPUT_PATH}/test_cdhitParser ${TEST_DIR})
+ADD_TEST(test_Muscle ${EXECUTABLE_OUTPUT_PATH}/test_Muscle ${TEST_DIR})
