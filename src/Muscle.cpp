@@ -1,4 +1,5 @@
 #include "Muscle.h"
+#include <cstdlib>
 
 using namespace std;
 
